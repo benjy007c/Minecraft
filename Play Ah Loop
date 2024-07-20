@@ -1,0 +1,14 @@
+-- Wrap the speaker peripheral
+local speaker = peripheral.find("speaker")
+
+-- Function to play sound in a loop
+local function loopSound(soundName, volume, pitch)
+    while true do
+        speaker.playSound(soundName, volume, pitch)
+        sleep(1)  -- Adjust the sleep time based on the length of the sound
+    end
+end
+
+-- Replace "minecraft:entity.enderman.ambient" with your desired sound
+-- Volume and pitch can be adjusted as needed
+loopSound("ah.dfpwm", 1.0, 1.0)
