@@ -1,0 +1,30 @@
+-- Wrap the monitor peripheral
+local monitor = peripheral.wrap("right")
+
+-- Clear the monitor and set text scale
+monitor.clear()
+monitor.setTextScale(0.5)
+
+-- Function to display ASCII art
+local function displayAsciiArt()
+    local asciiArt = [[
+        /\\_/\\  
+       ( o.o ) 
+        > ^ <
+    ]]
+    
+    -- Split the ASCII art into lines
+    local lines = {}
+    for line in asciiArt:gmatch("[^\r\n]+") do
+        table.insert(lines, line)
+    end
+
+    -- Display each line on the monitor
+    for i, line in ipairs(lines) do
+        monitor.setCursorPos(1, i)
+        monitor.write(line)
+    end
+end
+
+-- Call the function to display the ASCII art
+displayAsciiArt()
