@@ -11,4 +11,4 @@ end
 
 -- Replace "minecraft:entity.enderman.ambient" with your desired sound
 -- Volume and pitch can be adjusted as needed
-loopSound("ah.dfpwm", 1.0, 1.0)
+loopSound("ah", 1.0, 1.0)
