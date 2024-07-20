@@ -1,14 +1,29 @@
 -- Wrap the speaker peripheral
 local speaker = peripheral.find("speaker")
 
--- Function to play sound in a loop
-local function loopSound(soundName, volume, pitch)
+-- Load the DFPWM module
+local dfpwm = require("cc.audio.dfpwm")
+
+-- Create a decoder
+local decoder = dfpwm.make_decoder()
+
+-- Open the DFPWM file
+local file = fs.open("ah.dfpwm", "rb")
+
+-- Function to play the sound
+local function playSound()
     while true do
-        speaker.playSound(soundName, volume, pitch)
-        sleep(1)  -- Adjust the sleep time based on the length of the sound
+        local chunk = file.read(16 * 1024)
+        if not chunk then break end
+        local decoded = decoder(chunk)
+        speaker.playAudio(decoded)
+        sleep(0) -- Yield to avoid freezing the game
     end
+    file.close()
 end
 
--- Replace "minecraft:entity.enderman.ambient" with your desired sound
--- Volume and pitch can be adjusted as needed
-loopSound("ah", 1.0, 1.0)
+-- Play the sound in a loop
+while true do
+    playSound()
+    sleep(1) -- Adjust the sleep time based on the length of the sound
+end
