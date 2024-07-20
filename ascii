@@ -8,7 +8,7 @@ monitor.setTextScale(0.5)
 -- Function to display ASCII art
 local function displayAsciiArt()
     local asciiArt = [[
-        /\\_/\\  
+        /\_/\  
        ( o.o ) 
         > ^ <
     ]]
